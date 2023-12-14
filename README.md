@@ -1,7 +1,7 @@
 Unsupervised Cross-Domain Image Retrieval via Prototypical Optimal Transport
 =============================================================================
 
-Code release for Unsupervised Cross-Domain Image Retrieval via Prototypical Optimal Transport [accepted by AAAI 2024]
+Code release for Unsupervised Cross-Domain Image Retrieval via Prototypical Optimal Transport **[accepted by AAAI 2024]**
 <p align="center">
   <img src="pipeline.jpg" width="800">
 </p>
