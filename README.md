@@ -30,7 +30,8 @@ For Office-Home:
 CUDA_VISIBLE_DEVICES=0 ./Scripts/Office-Home.sh
 ```
 ## Model checkpoints
-
+Our trained models can be downloaded as following. 
+- [checkpoints](https://drive.google.com/drive/folders/10kFaWMmecRaoqwpkaz9yLSkeRahIB5D2?usp=drive_link)
 
 ## Acknowledgement
 This repository is built based on the source code for [Feature Representation Learning for Unsupervised Cross-domain Image Retrieval](https://github.com/conghui1002/UCDIR)
