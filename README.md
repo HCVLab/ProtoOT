@@ -40,5 +40,12 @@ This repository is built based on the source code for [Feature Representation Le
 If you find this repository useful in your research, please consider citing:
 
 ```
-
+@misc{li2024unsupervised,
+      title={Unsupervised Cross-Domain Image Retrieval via Prototypical Optimal Transport}, 
+      author={Bin Li and Ye Shi and Qian Yu and Jingya Wang},
+      year={2024},
+      eprint={2402.18411},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
