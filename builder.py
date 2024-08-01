@@ -158,7 +158,7 @@ class UCDIR(nn.Module):
             mask_queue = torch.arange(queue.shape[0]).cuda() != im_id[:,None]
 
             similarity_feat = F.normalize(torch.matmul(q_feat,queue.T),dim=1)
-            similarity_feat[im_id, im_id] = 1*e-05
+            similarity_feat[torch.arange(q_feat.shape[0]).cuda(), im_id] = -1*torch.exp(5)
             nearest_feat_index = torch.argmax(similarity_feat, dim=1)
             nearest_feat = similarity_feat_mask[nearest_feat_index]
             
