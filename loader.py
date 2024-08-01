@@ -6,7 +6,6 @@ from PIL import ImageFilter
 import torch.utils.data as data
 import torchvision.transforms as transforms
 
-
 class TwoCropsTransform:
 
     def __init__(self, base_transform):
