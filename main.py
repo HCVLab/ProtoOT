@@ -18,7 +18,6 @@ import torch.utils.data
 import torch.utils.data.distributed
 import torchvision.models as models
 
-
 import loader
 import builder
 from sklearn.metrics.pairwise import cosine_similarity
