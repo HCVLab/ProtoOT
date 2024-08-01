@@ -24,7 +24,6 @@ For DomainNet:
 ```
 CUDA_VISIBLE_DEVICES=0 ./Scripts/DomainNet.sh
 ```
-
 For Office-Home:
 ```
 CUDA_VISIBLE_DEVICES=0 ./Scripts/Office-Home.sh
