@@ -160,7 +160,6 @@ class UCDIR(nn.Module):
             similarity_feat = F.normalize(torch.matmul(q_feat,queue.T),dim=1)
             similarity_feat_mask = torch.masked_select(similarity_feat, mask_queue).reshape(q_feat.shape[0], -1)
             nearest_feat_index = torch.argmax(similarity_feat_mask, dim=1)
-            nearest_feat = queue[nearest_feat_index]
             
             similarity_feat_proto = F.normalize(torch.matmul(queue, prototypes.T),dim=1)
             sim_code = ProtoOT(similarity_feat_proto.detach(),self.epsilon,self.sink_iters, beta)
@@ -169,7 +168,7 @@ class UCDIR(nn.Module):
             mapped_proto = prototypes[mapped_proto_index]
 
             l_pos_aug = torch.einsum('nc,nc->n', [q_feat, k_feat]).unsqueeze(-1)
-            l_pos_nearest = torch.einsum('nc,nc->n', [q_feat, nearest_feat]).unsqueeze(-1)
+            l_pos_nearest = similarity_feat_mask[torch.arange(q_feat.shape[0]).cuda(),nearest_feat_index].unsqueeze(-1)
             l_pos_proto = torch.einsum('nc,nc->n', [q_feat, mapped_proto]).unsqueeze(-1)
 
 
