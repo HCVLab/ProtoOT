@@ -155,8 +155,8 @@ class UCDIR(nn.Module):
 
             prototypes= cluster_result['centroids_' + domain_id]
 
-            similarity_feat = F.normalize(torch.matmul(k_feat,queue.T),dim=1)
-            similarity_feat[torch.arange(q_feat.shape[0]).cuda(), im_id] = -100
+            similarity_feat = F.normalize(torch.matmul(q_feat,queue.T),dim=1)
+            similarity_feat[torch.arange(q_feat.shape[0]).cuda(), im_id] = -1000
             nearest_feat_index = torch.argmax(similarity_feat, dim=1)
             nearest_feat = queue[nearest_feat_index]
             
