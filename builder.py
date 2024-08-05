@@ -169,22 +169,26 @@ class UCDIR(nn.Module):
             l_pos_aug = torch.einsum('nc,nc->n', [q_feat, k_feat]).unsqueeze(-1)
             l_pos_nearest = torch.einsum('nc,nc->n', [q_feat, nearest_feat]).unsqueeze(-1)
             l_pos_proto = torch.einsum('nc,nc->n', [q_feat, mapped_proto]).unsqueeze(-1)
-
-
-            l_pos = 0.5*l_pos_nearest + 0.05*l_pos_proto + l_pos_aug 
             
             mask = torch.arange(prototypes.shape[0]).cuda() != mapped_proto_index[:,None]
             l_all = torch.einsum('nc,ck->nk', [q_feat, prototypes.T])
             l_neg = torch.masked_select(l_all, mask).reshape(q_feat.shape[0], -1)
 
           
-            logits = torch.cat([l_pos, l_neg], dim=1)
+            logits_aug = torch.cat([l_pos_aug, l_neg], dim=1)
+            logits_nearest = torch.cat([l_pos_nearest, l_neg], dim=1)
+            logits_proto = torch.cat([l_pos_proto, l_neg], dim=1)
             
-            logits /= self.T
+            logits_aug /= self.T
+            logits_nearest /= self.T
+            logits_proto /= self.T
 
-            labels = torch.zeros(logits.shape[0], dtype=torch.long).cuda()
+            labels_aug = torch.zeros(logits_aug.shape[0], dtype=torch.long).cuda()
+            labels_nearest = torch.zeros(logits_nearest.shape[0], dtype=torch.long).cuda()
+            labels_proto = torch.zeros(logits_proto.shape[0], dtype=torch.long).cuda()
 
-            loss = criterion(logits, labels)
+            loss = criterion(logits_aug, labels_aug) + 0.5*criterion(logits_nearest, labels_nearest) + 0.005*criterion(logits_proto, labels_proto)
+
 
             cluster_result['centroids_' + domain_id] = F.normalize(torch.matmul(sim_code.T, queue), dim=1)
        
