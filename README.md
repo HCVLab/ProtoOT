@@ -18,6 +18,7 @@ Code release for Unsupervised Cross-Domain Image Retrieval via Prototypical Opti
 * [DomainNet Dataset](http://ai.bu.edu/M3SDA/)
 ## Pre-trained model
 * [MoCo v2 model](https://github.com/facebookresearch/moco): Download the MoCo v2 model trained after 800 epochs.
+* [DINO model](https://github.com/IDEA-Research/DINO):Download the DINO model.
 
 ## Run code
 For DomainNet:
