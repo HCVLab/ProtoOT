@@ -187,7 +187,7 @@ class UCDIR(nn.Module):
             labels_nearest = torch.zeros(logits_nearest.shape[0], dtype=torch.long).cuda()
             labels_proto = torch.zeros(logits_proto.shape[0], dtype=torch.long).cuda()
 
-            loss = criterion(logits_aug, labels_aug) + 0.5*criterion(logits_nearest, labels_nearest) + 0.05*criterion(logits_proto, labels_proto)
+            loss = criterion(logits_aug, labels_aug) + 0.5*criterion(logits_nearest, labels_nearest) + 0.1*criterion(logits_proto, labels_proto)
 
 
             cluster_result['centroids_' + domain_id] = F.normalize(torch.matmul(sim_code.T, queue), dim=1)
